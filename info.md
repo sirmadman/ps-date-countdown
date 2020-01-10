@@ -1,3 +1,24 @@
+{% if prerelease %}
+
+#This is a Beta version!
+{% endif %}
+{% if installed %}
+## Changes as compared to your installed version:
+
+### Breaking Changes
+
+### Changes
+
+### Features
+
+{% if version_installed.replace("v", "").replace(".","") | int < 4.0  %}
+- Added `date_format:` - Date format, according to Python's strptime() like %y-%m-%d. `date`should then be in entered in this format.
+- Added `friendly_name:` - Name to display instead of automatically set.
+{% endif %}
+
+### Bugfixes
+---
+{% endif %}
 ## How it works
 This script creates a sensor that a counts down to the next occurrance of a date, like a birthday or anniversary and gives the number of years as an attribute
 
@@ -146,21 +167,3 @@ entities:
 Will provide the following lovelace representation:
 
 ![Lovelace example](https://community-home-assistant-assets.s3.dualstack.us-west-2.amazonaws.com/original/3X/b/a/ba44600d7f41b1525a3c835d11bcc3bd59815b23.png)
-
-{% if installed %}
-## Changes as compared to your installed version:
-
-### Breaking Changes
-
-### Changes
-
-### Features
-
-{% if version_installed.replace("v", "").replace(".","") | int < 4.0  %}
-- Added `date_format:` - Date format, according to Python's strptime() like %y-%m-%d. `date`should then be in entered in this format.
-- Added `friendly_name:` - Name to display instead of automatically set.
-{% endif %}
-
-### Bugfixes
----
-{% endif %}
