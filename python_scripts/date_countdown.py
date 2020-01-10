@@ -5,26 +5,13 @@ type = data.get('type')
 sensorName = "sensor.{}_{}".format(type , name.replace(" " , "_"))
 friendly_name = data.get('friendly_name', '')
 
-dateFormat = data.get('date_format')
-
 dateStr = data.get('date')
-if dateFormat is not None:
-  try:
-    date = datetime.strptime(dateStr, dateFormat)
-    dateYear = date.year
-    dateMonth = date.month
-    dateDay = date.day
-  except ValueError as ve:
-    raise ParseException(s, l, str(ve))
+dateSplit = dateStr.split("/")
 
-try: date
-except NameError:
-  dateSplit = dateStr.split("/")
-
-  dateDay = int(dateSplit[0])
-  dateMonth = int(dateSplit[1])
-  dateYear =  int(dateSplit[2])
-  date = datetime.date(dateYear , dateMonth , dateDay)
+dateDay = int(dateSplit[0])
+dateMonth = int(dateSplit[1])
+dateYear =  int(dateSplit[2])
+date = datetime.date(dateYear , dateMonth , dateDay)
 
 thisYear = today.year
 nextOccur = datetime.date(thisYear , dateMonth , dateDay)
