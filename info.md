@@ -12,7 +12,7 @@ key | required | type | description
 `name:` | True | string | Name of the date (eg. John)
 `type:` | True | string | Type of date (eg. Birthday)
 `date:` | True | string | Date, in format DD/MM/YYYY
-`date_format:` | False | string | Date format, according to Python's strptime() like %y-%m-%d
+`date_format:` | False | string | Date format, according to Python's strptime() like %y-%m-%d. `date`should then be in entered in this format.
 `friendly_name:` | False | string | Name to display. If not set it will be set with logic.
 
 The date can be in the future if you want to countdown to the date itself, and then the anniversaries thereafter.
@@ -146,3 +146,21 @@ entities:
 Will provide the following lovelace representation:
 
 ![Lovelace example](https://community-home-assistant-assets.s3.dualstack.us-west-2.amazonaws.com/original/3X/b/a/ba44600d7f41b1525a3c835d11bcc3bd59815b23.png)
+
+{% if installed %}
+## Changes as compared to your installed version:
+
+### Breaking Changes
+
+### Changes
+
+### Features
+
+{% if version_installed.replace("v", "").replace(".","") | int < 4.0  %}
+- Added `date_format:` - Date format, according to Python's strptime() like %y-%m-%d. `date`should then be in entered in this format.
+- Added `friendly_name:` - Name to display instead of automatically set.
+{% endif %}
+
+### Bugfixes
+---
+{% endif %}
