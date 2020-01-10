@@ -8,10 +8,6 @@ friendly_name = data.get('friendly_name', '')
 dateFormat = data.get('date_format')
 
 dateStr = data.get('date')
-/**
- * @todo: Validate dateFormat
- * @body: Without validation of dateFormat datetime.strptime() may 
- */
 if dateFormat is not None:
   try:
     date = datetime.strptime(dateStr, dateFormat)
