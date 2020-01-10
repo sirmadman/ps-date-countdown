@@ -1,7 +1,3 @@
-{% if prerelease %}
-
-###This is a Beta version!
-{% endif %}
 {% if installed %}
 ## Changes as compared to your installed version:
 
@@ -12,7 +8,6 @@
 ### Features
 
 {% if version_installed.replace("v", "").replace(".","") | int < 4.0  %}
-- Added `date_format:` - Date format, according to Python's strptime() like %y-%m-%d. `date`should then be in entered in this format.
 - Added `friendly_name:` - Name to display instead of automatically set.
 {% endif %}
 
@@ -33,7 +28,6 @@ key | required | type | description
 `name:` | True | string | Name of the date (eg. John)
 `type:` | True | string | Type of date (eg. Birthday)
 `date:` | True | string | Date, in format DD/MM/YYYY
-`date_format:` | False | string | Date format, according to Python's strptime() like %y-%m-%d. `date`should then be in entered in this format.
 `friendly_name:` | False | string | Name to display. If not set it will be set with logic.
 
 The date can be in the future if you want to countdown to the date itself, and then the anniversaries thereafter.
@@ -51,12 +45,6 @@ optional:
 
 ```
 friendly_name: 'Our yearly reminder'
-date_format: %y-%m-%d
-```
-If `date_format` is set `date` must be according to that format. Example according to format above:
-
-```
-date: YYYY-MM-DD
 ```
 
 examples:
