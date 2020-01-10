@@ -12,6 +12,8 @@ key | required | type | description
 `name:` | True | string | Name of the date (eg. John)
 `type:` | True | string | Type of date (eg. Birthday)
 `date:` | True | string | Date, in format DD/MM/YYYY
+`date_format:` | False | string | Date format, according to Python's strptime() like %y-%m-%d
+`friendly_name:` | False | string | Name to display. If not set it will be set with logic.
 
 The date can be in the future if you want to countdown to the date itself, and then the anniversaries thereafter.
 
@@ -22,6 +24,18 @@ Each sensor **requires**:
 name: NAME_OF_DATE
 type: TYPE_OF_DATE
 date: DD/MM/YYYY_OF DATE
+```
+
+optional:
+
+```
+friendly_name: 'Our yearly reminder'
+date_format: %y-%m-%d
+```
+If `date_format` is set `date` must be according to that format. Example according to format above:
+
+```
+date: YYYY-MM-DD
 ```
 
 examples:
@@ -48,6 +62,8 @@ entity_id: sensor.<type>_<name>
 friendly_name: <name> <type>
 state: <Days to the date from today>
 nextoccur: <Date of next occurance>
+nextoccur_iso8601: <Date of next occurance in ISO 8601 format (YYYY-MM-DD)>
+nextoccur_datetime: <Date object of next occurance>
 years: <Number of years it will be>
 ```
 
@@ -58,16 +74,20 @@ sensor.birthday_john
 friendly_name: John’s birthday
 state: However many days it is until 17th August
 nextoccur: 17/08/YYYY (either this year or next year as appropriate)
+nextoccur_iso8601: YYYY-08-17 (either this year or next year as appropriate)
+nextoccur_datetime: dateObject (either this year or next year as appropriate)
 years: However old John will be on his next birthday
 
 sensor.anniversary_our_wedding
 friendly_name: Our wedding anniversary
 state: However many days to 14th February
 nextoccur: 14/02/YYYY (either this year or next year as appropriate)
+nextoccur_iso8601: YYYY-02-14 (either this year or next year as appropriate)
+nextoccur_datetime: dateObject (either this year or next year as appropriate)
 years: How many years you will have been married on that day
 ```
 
-Note that if the type is 'birthday' the sensor will automatically add an apostrophe.
+Note that if the type is 'birthday' the sensor will automatically add an apostrophe if not `date_format` is supplied.
 
 ## Example configuration.yaml entry
 An example automation to create and refresh the above two sensors daily would be:
