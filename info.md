@@ -1,6 +1,6 @@
 {% if prerelease %}
 
-#This is a Beta version!
+###This is a Beta version!
 {% endif %}
 {% if installed %}
 ## Changes as compared to your installed version:
