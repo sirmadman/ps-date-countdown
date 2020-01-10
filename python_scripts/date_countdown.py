@@ -44,8 +44,7 @@ hass.states.set(sensorName , numberOfDays ,
     "unit_of_measurement" : "days" ,
     "friendly_name" : friendly_name,
     "nextoccur" : "{}/{}/{}".format(nextOccur.day , nextOccur.month , nextOccur.year) ,
-    "nextoccur_iso8601" : "{}-{}-{}".format(nextOccur.year , nextOccur.month , nextOccur.day) ,
-    "nextoccur_datetime" : nextOccur ,
+    "nextoccur_date" : nextOccur ,
     "years" : years
   }
 )
