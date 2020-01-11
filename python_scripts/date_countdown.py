@@ -42,9 +42,9 @@ hass.states.set(sensorName , numberOfDays ,
   {
     "icon" : "mdi:calendar-star" ,
     "unit_of_measurement" : "days" ,
-    "friendly_name" : friendly_name,
+    "friendly_name" : friendly_name ,
     "nextoccur" : "{}/{}/{}".format(nextOccur.day , nextOccur.month , nextOccur.year) ,
-    "nextoccur_date" : nextOccur ,
+    "nextoccur_date" : nextOccur.isoformat() ,
     "years" : years
   }
 )
